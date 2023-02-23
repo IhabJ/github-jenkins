@@ -3,7 +3,7 @@ pipeline{
   stages{
     stage('Checkout'){
       steps{
-          bat "git branch --delete staging"
+          bat "git branch -D staging"
           bat "git branch staging"
           bat "git checkout staging"
           bat "git push origin staging"
