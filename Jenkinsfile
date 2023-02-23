@@ -3,6 +3,7 @@ pipeline{
   stages{
     stage('Checkout'){
       steps{
+          bat "git fetch"
           bat "git branch -D staging"
           bat "git branch staging"
           bat "git checkout staging"
