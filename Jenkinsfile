@@ -5,9 +5,9 @@ pipeline{
       steps{
           bat "git fetch"
           bat "git branch -D staging"
-          // bat "git branch staging"
+          bat "git branch staging"
           bat "git checkout -b staging"
-          bat "git push origin staging"
+          // bat "git push origin staging"
         }
       }
 
