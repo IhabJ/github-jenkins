@@ -8,15 +8,14 @@ pipeline{
           // bat "git branch staging"
           // bat "git checkout staging"
           // bat "git push origin staging"
-          withCredentials([usernamePassword(credentialsId: 'Github_credentials', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASS')]) {
+          withCredentials([sshUserPrivateKey(credentialsId: "github_ssh", keyFileVariable: 'key', passphraseVariable: 'SSH_PASS')]) {
             // bat "git config --global user.username '$GITHUB_USER'"
-            bat "git config --global user.name '$GITHUB_USER'"
-            bat "echo $GITHUB_USER"
-            bat "git remote set-url origin https://$GITHUB_USER:$GITHUB_PASS@github.com/IhabJ/github-jenkins"
+            bat "GIT_SSH_COMMAND='ssh -i $key -o StrictHostKeyChecking=no'"
             bat "git branch -D staging"
             bat "git branch staging"
             bat "git checkout staging"
-            bat "git push origin staging"
+            // bat "git push origin staging"
+            bat "echo $SSH_PASS | ssh-add $key - && git push git@github.com:IhabJ/github-jenkins.git staging"
           }
         }
       }
