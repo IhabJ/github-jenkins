@@ -11,6 +11,7 @@ pipeline{
           withCredentials([usernamePassword(credentialsId: 'Github_credentials', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASS')]) {
             bat "git config --global user.email '$GITHUB_USER'"
             bat "git config --global user.name 'YOUR_USERNAME'"
+            bat "echo $GITHUB_USER"
             bat "git remote set-url origin https://$GITHUB_USER:$GITHUB_PASS@github.com/IhabJ/github-jenkins"
             bat "git branch -D staging"
             bat "git branch staging"
