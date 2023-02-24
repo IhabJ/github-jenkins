@@ -8,9 +8,9 @@ pipeline{
           // bat "git branch staging"
           // bat "git checkout staging"
           // bat "git push origin staging"
-          withCredentials([usernamePassword(credentialsId: 'Github_credentials', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASS')]) {    
-            bat "git config --global user.email '$GITHUB_USER'"    
-            bat "git config --global user.name 'YOUR_USERNAME'"    
+          withCredentials([usernamePassword(credentialsId: 'Github_credentials', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASS')]) {
+            bat "git config --global user.email '$GITHUB_USER'"
+            bat "git config --global user.name 'YOUR_USERNAME'"
             bat "git remote set-url origin https://$GITHUB_USER:$GITHUB_PASS@github.com/IhabJ/github-jenkins"
             bat "git branch -D staging"
             bat "git branch staging"
